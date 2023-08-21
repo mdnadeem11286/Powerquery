@@ -1,0 +1,183 @@
+= Table.AddColumn(Custom1, "Custom 2", each if [Category1]="Outlook" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"send email","receive email","attachment","emails","disconnected","external","unblock"})([lowercase]))>1 
+then "Send/Receive email issue" 
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"out of office","ooo"})([lowercase]))>1 
+then "Out of office issue" 
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"personal tag","3 years", "policy","tag","personal"})([lowercase]))>1 
+then "Email Retention issue" 
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"launch","frozen","freezing","stuck","Open","load""cannot start","unable to start"," pst ","slow","latency"})([lowercase]))>1 
+then "Outlook Launch issue" 
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"spam", "phishing","quarantine"})([lowercase]))>1 
+then "Email Spam/Phishing issue" 
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"deleted emails","deleted mail","missing","recover","recover","missing","deleted","unable to find","emails delete"})([lowercase]))>1 
+then "Recover email issue" 
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"meeting","addin","add-in","calendar"})([lowercase]))>1 
+then "Teams-Meeting issue"
+
+else
+"Generic Outlook Issue"
+
+ 
+
+
+else
+if [Category1]="Active Directory" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"computer login","need password","reset","reset password","account locked", "unlock","unlock account","lock","unlock"})([lowercase]))>1 
+then "Password related Issues" 
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"offline password"," offline password reset"})([lowercase]))>1 
+then "Offline Password Issues" 
+else
+"Generic Password issues"
+
+ 
+
+ 
+
+else
+if [Category1]="My Learning Issue" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"course is not launching", "training is not launching","training does not open", "training is not opening", "course is not progressing", "launch", "start", "quiz", "assessment"})([lowercase]))>1 
+then "Course Launch/ Stuck issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"in-progress", "credit", "course credit", "grant", "incomplete","completed", "assessment","in progress"})([lowercase]))>1 
+then "Completed course shows in progress"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"remove", "due","overdue", "delete"})([lowercase]))>1 
+then "Removal of Course"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"unable to login", "new hire", "access", "credential not working", "Password", "account", "locked"})([lowercase]))>1 
+then "Login Issue"
+else
+"Generic MyLeanring issues"
+
+ 
+
+
+else
+if [Category1]="VDI/AVDI Issue" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"is stuck","is not launching", "screen is blank", "is freezing", "unable to launch", "vdi error", "vdi got disconnected", "vdi is disconnected", "desktop not available", "desktop is not available", "timeout", "tunnel error"})([lowercase]))>1 
+then "Launch issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"vdi screen size", "vdi display issue", "multiple screens", "display"})([lowercase]))>1 
+then "Display issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"Password is not working in vdi", "credential invalid", "cannot login","temporary password not working", "password Manager", "self service tool", "access denied", "unable to login", "migrated", "migration", "unauthorised access", "reset password", "update the password", "your Password must be reset before you can logon"})([lowercase]))>1 
+then "Login Issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"Teams not working", "mic issue", "unable to hear audio", "unable to listen voice in Teams call"})([lowercase]))>1 
+then "Teams Audio/Video issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"unable to see any applications in software center", "unable to view any applications in software center", "oracle sql developer", "bards sas upgrade", "installation is stuck", "installation is failed", "not getting downloaded", "installation is not progressing", "installation", "download","softwarecenter","software center"})([lowercase]))>1 
+then "Software Center Issues"
+else
+"Generic VDI issues"
+
+ 
+
+
+else
+if [Category1]="Software Center Issue" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"software center does not launch", "does not exist", "empty", "softwares are not visible", "visible","load"})([lowercase]))>1 
+then "Software center Launch issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"download", "install", "installation", "not completed, stuck, downloading, not progressing", "completed", "compliance", "sccm"})([lowercase]))>1 
+then "Installation Issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"package not available", "software owner", "application not available", "owner", "application"})([lowercase]))>1 
+then "Application not available in software center"
+else
+"Generic SCCM/Software center issues"
+
+ 
+
+ 
+
+
+else
+if [Category1]="Microsoft Teams issue" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"unable to make calls","mic","audio","recordings","video"})([lowercase]))>1 
+then "Audio/video issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"run into an issue","launch"})([lowercase]))>1 
+then "Teams launch issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"meeting","calendar","icon missing","schedule"})([lowercase]))>1 
+then "Meeting/calendar issue"
+else
+"Other teams issue"
+
+ 
+
+
+else
+if [Category1]="Laptop/Hardware issue" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"admin rights", "unable to change time"})([lowercase]))>1 
+then "Laptop admin rights"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"slow", "latency", "application crashes", "New hire"})([lowercase]))>1 
+then "Laptop applications issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"charging", "battery", "power", "Charger","damamged hardware", "lost", "stolen", "replacement","memory full", "RAM", "storage","speaker", "audio issue","display", "monitor", "camera","screen"})([lowercase]))>1
+then "Laptop Hardware issue"
+
+ 
+
+else
+"Other Laptop issue"
+
+ 
+
+
+else
+if [Category1]="Office 365" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"sharepoint access","share point","site modification","create site","add member","remove member", "change name","ownership","teamsite","team site","size","quota"})([lowercase]))>1 
+then "Share point issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"excel issue", "word issue","word file issue","excel file issue","file issue"})([lowercase]))>1
+then "Microsoft office issue"
+
+ 
+
+else
+"Other O365 issue"
+
+else if [Category1]="Mobility issue" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"mobileiron","mobile iron"})([lowercase]))>1 
+then "Mobile Iron issue"
+else 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"ipad"})([lowercase]))>1 
+then "Ipad issue"
+else  
+if List.Count(Splitter.SplitTextByAnyDelimiter({"iphone"})([lowercase]))>1 
+then "iphone issue"
+else  
+if List.Count(Splitter.SplitTextByAnyDelimiter({"android"})([lowercase]))>1 
+then "Android issue"
+else "Other Mobility issues"
+
+else if [Category1]="Pulse secure issue" 
+then "Connection issues"
+
+
+else if [Category1]="Symantec VIP" 
+then "Symantec VIP Registeration issues" 
+
+else if [Category1]= "Axonify issue"then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"suspended"})([lowercase]))>1 
+then "Axonify Migration issue" 
+else "Other access issue"
+
+
+else if [Category1]= "Midas/Meds issue" then 
+if List.Count(Splitter.SplitTextByAnyDelimiter({"docs"})([lowercase]))>1 
+then "Meds Docs issue" 
+else "Other MIDAS/MEDS issue" 
+
+
+else "Other issues")
